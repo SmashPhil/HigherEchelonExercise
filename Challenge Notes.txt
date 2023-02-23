@@ -1,0 +1,23 @@
+-- Higher Echelon Tech Challenge --
+
+Start / Stop Button
+- Color:
+	Normal: White
+	Highlight: Cyan
+	Pressed: Purple
+
+Switch
+- Color:
+	All: White
+- Time to Reset: 2 seconds
+
+Dial
+- Rotation Time: 3 seconds
+- Starts: Clockwise
+
+App Quit
+- After 10 total inputs
+- Text: "Try again?"
+- Responses:
+	Yes: Reset
+	No: Quit Application
