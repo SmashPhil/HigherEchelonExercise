@@ -5,6 +5,16 @@ using UnityEngine;
 
 namespace HigherEchelon
 {
+	/// <summary>
+	/// In regards to the usage of static members and singleton instance:
+	/// 
+	/// For this exercise in particular, the scripts are only ever to be used on 1 game object so being able to reference their instance members 
+	/// without having to fetch or serialize the components made a bit more sense to me.  
+	/// Alternatively I could’ve referenced those components directly from the GameOverHandler script or use an interface for setting up 2 components with counters and a callback, 
+	/// however I felt it would be a bit much for the challenge as the scope was quite small.
+	/// 
+	/// In practice, I typically reserve using singletons for higher level manager classes that also require actually enforcing its single-instance.
+	/// </summary>
 	public class GameOverHandler : MonoBehaviour
 	{
 		private const int TotalClicksAlotted = 10;
