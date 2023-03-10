@@ -26,17 +26,12 @@ namespace HigherEchelon
 					return;
 				}
 				count = value;
-				OnCountChange();
+				DialHandler.Instance.VerifyQuitConditions();
+				CountChanged();
 			}
 		}
 
-		private void OnCountChange()
-		{
-			DialHandler.Instance.VerifyQuitConditions();
-			CountChangedCallback();
-		}
-
-		public virtual void CountChangedCallback()
+		public virtual void CountChanged()
 		{
 			counterLabel.text = Count.ToString();
 		}

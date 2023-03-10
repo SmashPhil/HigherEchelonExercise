@@ -8,7 +8,7 @@ namespace HigherEchelon
     public class Button : EventCounter
     {
         public void ToggleAnimation()
-		{
+        {
             DialHandler.Active = !DialHandler.Active;
             Count++;
         }

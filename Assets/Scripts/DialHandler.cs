@@ -33,7 +33,7 @@ namespace HigherEchelon
 			{
 				if (instance)
 				{
-					Destroy(instance); //Destroy previous instance to avoid memory leak and overlapping singleton script
+					Destroy(instance); //Destroy previous instance to avoid overlapping singleton script
 				}
 				instance = value;
 			}
