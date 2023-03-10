@@ -23,6 +23,8 @@ namespace HigherEchelon
 
 		public static bool Active { get; set; } = false;
 
+		//Singleton isn't really necessary in the scope of this project.
+		//Note: If scope of project were to scale up, the game over mechanic and dial behaviour script would want to be split up, and singleton removed
 		public static DialHandler Instance
 		{
 			get
@@ -33,7 +35,7 @@ namespace HigherEchelon
 			{
 				if (instance)
 				{
-					Destroy(instance); //Destroy previous instance to avoid overlapping singleton script
+					Destroy(instance.gameObject); //Destroy previous instance to avoid overlapping singleton script
 				}
 				instance = value;
 			}
@@ -51,14 +53,17 @@ namespace HigherEchelon
 		private void Awake()
 		{
 			Instance = this;
-			counters = FindObjectsOfType<EventCounter>().ToList(); //Pull all EventCounters in scene. Scales with newly added counter objects without additional input
+
+			//Pull all EventCounters in scene.
+			//Note: This is a slow operation, however the project size is small so it's negligeable.
+			counters = FindObjectsOfType<EventCounter>().ToList(); 
 		}
 
 		public void VerifyQuitConditions()
 		{
 			if (counters.Sum(eventCounter => eventCounter.Count) >= TotalClicksAlotted)
 			{
-				Instance.PromptQuit();
+				PromptQuit();
 			}
 		}
 
@@ -71,11 +76,11 @@ namespace HigherEchelon
 		{
 			foreach (EventCounter counter in counters)
 			{
-				counter.Count = 0;
+				counter.Count = 0; //Count setter will trigger callback for updating text
 			}
 			gameOverPrompt.SetActive(false);
 
-			//Stop rotation, reset to 0
+			//Reset dial to original state
 			Active = false;
 			transform.rotation = Quaternion.identity;
 		}
